@@ -1,2 +1,4 @@
 node_modules
 *.testing.ts
+*.testing.tsx
+out

@@ -22,9 +22,14 @@ interface RoactRoduxWrapper<S, P> {
 	(component: RenderablePropsAndStateClass<S, P>): RoduxConnection<S, P>;
 }
 
-declare class RoduxConnection<S, P> extends Roact.Component<S, P> {
-	public render(): Roact.Element;
+interface RoduxConnection<S, P> {
+	new (props: P): {};
 }
+
+// declare class RoduxConnection<S, P> extends Roact.Component<S, P> {
+// 	constructor(props: P);
+// 	public render(): Roact.Element;
+// }
 
 interface Connector {
 	(): RoactRoduxWrapper<any, any>;
