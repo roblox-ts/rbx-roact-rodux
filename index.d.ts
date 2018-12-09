@@ -19,13 +19,10 @@ interface RenderablePropsAndStateClass<S, P>
 	extends Roact.RenderablePropsClass<P> {}
 
 interface RoactRoduxWrapper<S, P> {
-	(component: RenderablePropsAndStateClass<S, P>): RoduxConnectedComponent<
-		S,
-		P
-	>;
+	(component: RenderablePropsAndStateClass<S, P>): RoduxConnection<S, P>;
 }
 
-declare class RoduxConnectedComponent<S, P> extends Roact.Component<S, P> {
+declare class RoduxConnection<S, P> extends Roact.Component<S, P> {
 	public render(): Roact.Element;
 }
 
