@@ -12,8 +12,8 @@ const libDir = path.join(process.cwd(), "roact-rodux", "lib");
 function replaceRoactRequire(text: string) {
 	text = text.replace(
 		/^local Roact = require\([\w\.]+\.Roact\)/gi,
-		`local RoactModule = game:GetService("ReplicatedStorage"):FindFirstChild("roact", true)\n` +
-			`local Roact = require(RoactModule.lib)`,
+		`local RoactModule = game:GetService("ReplicatedStorage"):FindFirstChild("rbx-roact", true)\n` +
+			`local Roact = require(RoactModule.roact.lib)`,
 	);
 
 	return text;
