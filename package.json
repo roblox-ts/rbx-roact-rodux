@@ -1,17 +1,17 @@
 {
-  "name": "rbx-roact-rodux",
-  "version": "0.0.1",
-  "description": "",
-  "scripts": {
-    
-  },
-  "keywords": [],
-  "typings": "index.d.ts",
-  "main": "./out/init.lua",
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "rbx-roact": "0.0.22",
-    "rbx-types": "^1.0.87"
-  }
+	"name": "rbx-roact-rodux",
+	"version": "0.0.1",
+	"description": "",
+	"scripts": {
+		"build": "node util/build/index.js"
+	},
+	"keywords": [],
+	"typings": "index.d.ts",
+	"main": "./out/init.lua",
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"rbx-roact": "0.0.22",
+		"rbx-types": "^1.0.87"
+	}
 }

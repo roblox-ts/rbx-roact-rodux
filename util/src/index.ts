@@ -5,22 +5,22 @@
  */
 
 import path = require("path");
-import fs = require("fs");
-import fsextra = require("fs-extra");
+import fs = require("fs-extra");
 
 const libDir = path.join(process.cwd(), "roact-rodux", "lib");
 
 function replaceRoactRequire(text: string) {
 	text = text.replace(
 		/^local Roact = require\([\w\.]+\.Roact\)/gi,
-		`local Roact = game:GetService("ReplicatedStorage"):FindFirstChild("Roact", true)`,
+		`local RoactModule = game:GetService("ReplicatedStorage"):FindFirstChild("roact", true)\n` +
+			`local Roact = require(RoactModule.lib)`,
 	);
 
 	return text;
 }
 
 fs.readdir(libDir, (err, files) => {
-	fsextra.ensureDirSync(path.join(process.cwd(), "out"));
+	fs.ensureDirSync(path.join(process.cwd(), "out"));
 
 	if (err) {
 		console.error(err);
