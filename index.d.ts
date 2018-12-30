@@ -1,4 +1,4 @@
-import Roact from "rbx-roact";
+import Roact = require("rbx-roact");
 
 export as namespace RoactRodux;
 export = RoactRodux;
