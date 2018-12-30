@@ -27,7 +27,9 @@ fs.readdir(libDir, (err, files) => {
 	}
 	const matching = files.filter(file => file.match(/^(\w+)\.lua$/));
 	for (const matched of matching) {
-		if (matched.match(/^connect\.lua$/)) {
+		if (matched.match(/^(connect\.lua|StoreProvider\.lua)$/)) {
+			console.log("replace", matched);
+
 			let text = replaceRoactRequire(
 				fs.readFileSync(path.join(libDir, matched)).toString(),
 			);
