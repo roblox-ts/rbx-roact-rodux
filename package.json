@@ -12,6 +12,7 @@
 	"license": "ISC",
 	"devDependencies": {
 		"rbx-roact": "0.0.22",
+		"rbx-rodux": "0.0.3",
 		"rbx-types": "^1.0.87"
 	}
 }
