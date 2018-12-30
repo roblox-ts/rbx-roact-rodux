@@ -62,14 +62,9 @@ type MapStateToProps<S, P, K extends keyof S> = (
 ) => ContainsKeys<S, K>;
 
 declare namespace RoactRodux {
-	class StoreProvider extends Roact.Component<{}, StoreProviderProps> {
+	class StoreProvider extends Roact.Component<StoreProviderProps> {
 		public render(): Roact.Element;
 	}
 
 	const connect: Connector;
-
-	// function connect<COM extends Roact.Component<S, P>, S, P>(
-	// 	mapStateToProps: MapStateToProps<S, P, keyof S>,
-	// 	dispatcher: Dispatcher,
-	// ): Connector<S, P>;
 }
