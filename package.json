@@ -1,6 +1,6 @@
 {
 	"name": "rbx-roact-rodux",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "",
 	"scripts": {
 		"build": "node util/build/index.js"
@@ -10,6 +10,10 @@
 	"main": "./out/init.lua",
 	"author": "",
 	"license": "ISC",
+	"files": [
+		"out/*",
+		"*.d.ts"
+	],
 	"devDependencies": {
 		"rbx-roact": "0.0.22",
 		"rbx-rodux": "0.0.3",
