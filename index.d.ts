@@ -59,7 +59,7 @@ interface Connector {
 type MapStateToProps<S, P, K extends keyof S> = (
 	state: S,
 	props: P,
-) => ContainsKeys<S, K>;
+) => Partial<ContainsKeys<S, K>>;
 
 declare namespace RoactRodux {
 	class StoreProvider extends Roact.Component<StoreProviderProps> {
