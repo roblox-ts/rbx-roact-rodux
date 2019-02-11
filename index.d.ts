@@ -4,7 +4,7 @@ export as namespace RoactRodux;
 export = RoactRodux;
 
 interface StoreProviderProps {
-	store: Rodux.Store;
+	store: Rodux.Store<any>;
 }
 
 type ContainsKeys<S, K extends keyof S> = Pick<S, K> | S | null;
