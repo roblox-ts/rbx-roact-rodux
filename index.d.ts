@@ -4,7 +4,7 @@ export as namespace RoactRodux;
 export = RoactRodux;
 
 interface StoreProviderProps {
-	store: Rodux.Store<any>;
+	store: Rodux.Store<unknown>;
 }
 
 type ContainsKeys<S, K extends keyof S> = Pick<S, K> | S | null;
@@ -31,6 +31,9 @@ type MapStateToProps<S, P, K extends keyof S> = (
 ) => ContainsKeys<S, K>;
 
 declare namespace RoactRodux {
+
+	type Mapped<P> = ContainsKeys<P, keyof P>;
+
 	class StoreProvider extends Roact.Component<StoreProviderProps> {
 		public render(): Roact.Element;
 	}
@@ -38,7 +41,7 @@ declare namespace RoactRodux {
 	function connect(): RoactRoduxWrapper<{}, {}>;
 
 	function connect<S, P>(
-		mapStateToProps: () => MapStateToProps<S, P, keyof S>,
+		mapStateToProps: (() => MapStateToProps<S, P, keyof S>),
 		mapDispatchToProps?: MapDispatcherToProps<P>,
 	): RoactRoduxWrapper<S, P>;
 
