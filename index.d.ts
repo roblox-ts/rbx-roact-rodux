@@ -13,7 +13,6 @@ type MapDispatcherToProps<P> = (
 		dispatchArgs: { type: string } & { [name: string]: any },
 	) => void,
 ) => Partial<ContainsKeys<P, keyof P>>;
-//type Connector<S, P> = (component: (typeof Roact.Component<S, P>)) => Roact.Component<S, P>;
 
 interface RenderablePropsAndStateClass<S, P>
 	extends Roact.RenderablePropsClass<P> {}
@@ -78,8 +77,6 @@ const connect = RoactRodux.connect<IMyStoreState, IMyComponentProps>(
 )
 ```
 	 */
-	function connect(): RoactRoduxWrapper<{}, {}>;
-
 	function connect<S, P>(
 		mapStateToProps: () => MapStateToProps<S, P, keyof S>,
 		mapDispatchToProps?: MapDispatcherToProps<P>,
