@@ -32,12 +32,52 @@ type MapStateToProps<S, P, K extends keyof S> = (
 ) => RoactRodux.Mapped<P>;
 
 declare namespace RoactRodux {
+	/**
+	 * Mapped RoactRodux properties
+	 */
 	type Mapped<P> = Partial<P>;
 
+	/**
+	 * A component that provides a Rodux store to Roact components
+	 * You can then make use of these stores through `RoactRodux.connect`
+	 */
 	class StoreProvider extends Roact.Component<StoreProviderProps> {
 		public render(): Roact.Element;
 	}
 
+	/**
+	 * Creates a Rodux connection that can be used by Roact components
+```ts
+const connect = RoactRodux.connect<IMyStoreState, IMyComponentProps>(
+	(state: IMyStoreState, props: IMyComponentProps):
+		RoactRodux.Mapped<IMyComponentProps> => {
+			return {
+				// ... the props you want to map go here
+			};
+		},
+)
+```
+
+	Where `IMyStoreState` is the type of your Rodux store, and `IMyComponentProps` is the type of your Roact.Component's `props`
+
+	The second argument is mapping the dispatch to your props:
+```ts
+const connect = RoactRodux.connect<IMyStoreState, IMyComponentProps>(
+	(state: IMyStoreState, props: IMyComponentProps):
+		RoactRodux.Mapped<IMyComponentProps> => {
+			return {
+				// ... the props you want to map go here
+			};
+		},
+		dispatch => {
+			return {
+				// ... functions you want to map
+				// you can use dispatch as a function to dispatch messages.
+			}
+		},
+)
+```
+	 */
 	function connect(): RoactRoduxWrapper<{}, {}>;
 
 	function connect<S, P>(
