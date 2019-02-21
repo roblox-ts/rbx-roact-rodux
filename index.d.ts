@@ -7,7 +7,7 @@ interface StoreProviderProps {
 	store: Rodux.Store<unknown>;
 }
 
-type ContainsKeys<S, K extends keyof S> = Pick<S, K> | S | null;
+type ContainsKeys<S, K extends keyof S> = Pick<S, K> | S | undefined;
 type MapDispatcherToProps<P> = (
 	dispatch: (
 		dispatchArgs: { type: string } & { [name: string]: any },
