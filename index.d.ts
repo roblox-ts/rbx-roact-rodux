@@ -7,12 +7,13 @@ interface StoreProviderProps {
 	store: Rodux.Store<unknown>;
 }
 
-type ContainsKeys<S, K extends keyof S> = Pick<S, K> | S | undefined;
+type ContainsKeys<S, K extends keyof S> = Pick<S, K> | S | null;
 type MapDispatcherToProps<P> = (
 	dispatch: (
 		dispatchArgs: { type: string } & { [name: string]: any },
 	) => void,
 ) => Partial<ContainsKeys<P, keyof P>>;
+//type Connector<S, P> = (component: (typeof Roact.Component<S, P>)) => Roact.Component<S, P>;
 
 interface RenderablePropsAndStateClass<S, P>
 	extends Roact.RenderablePropsClass<P> {}
@@ -28,11 +29,11 @@ interface RoduxConnection<S, P> {
 type MapStateToProps<S, P, K extends keyof S> = (
 	state: S,
 	props: P,
-) => ContainsKeys<S, K>;
+) => Partial<P>;
 
 declare namespace RoactRodux {
 
-	type Mapped<P> = ContainsKeys<P, keyof P>;
+	type Mapped<P> = Partial<P>;
 
 	class StoreProvider extends Roact.Component<StoreProviderProps> {
 		public render(): Roact.Element;
