@@ -29,10 +29,9 @@ interface RoduxConnection<S, P> {
 type MapStateToProps<S, P, K extends keyof S> = (
 	state: S,
 	props: P,
-) => Partial<P>;
+) => RoactRodux.Mapped<P>;
 
 declare namespace RoactRodux {
-
 	type Mapped<P> = Partial<P>;
 
 	class StoreProvider extends Roact.Component<StoreProviderProps> {
@@ -42,7 +41,7 @@ declare namespace RoactRodux {
 	function connect(): RoactRoduxWrapper<{}, {}>;
 
 	function connect<S, P>(
-		mapStateToProps: (() => MapStateToProps<S, P, keyof S>),
+		mapStateToProps: () => MapStateToProps<S, P, keyof S>,
 		mapDispatchToProps?: MapDispatcherToProps<P>,
 	): RoactRoduxWrapper<S, P>;
 
