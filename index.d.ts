@@ -14,11 +14,15 @@ type MapDispatcherToProps<P> = (
 	) => void,
 ) => Partial<ContainsKeys<P, keyof P>>;
 
-interface RenderablePropsAndStateClass<S, P>
-	extends Roact.RenderablePropsClass<P> {}
+interface StatefulComponent<S, P> extends Roact.RenderablePropsClass<P> {}
+
+interface FunctionalComponent<P> {
+	(props: P): Roact.Element;
+}
 
 interface RoactRoduxWrapper<S, P> {
-	(component: RenderablePropsAndStateClass<S, P>): RoduxConnection<S, P>;
+	(component: StatefulComponent<S, P>): RoduxConnection<S, P>;
+	(component: FunctionalComponent<P>): RoduxConnection<{}, P>;
 }
 
 interface RoduxConnection<S, P> {
