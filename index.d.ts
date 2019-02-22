@@ -14,18 +14,18 @@ type MapDispatcherToProps<P> = (
 	) => void,
 ) => Partial<ContainsKeys<P, keyof P>>;
 
-interface StatefulComponent<S, P> extends Roact.RenderablePropsClass<P> {}
+interface StatefulComponent<P> extends Roact.RenderablePropsClass<P> {}
 
 interface FunctionalComponent<P> {
 	(props: P): Roact.Element;
 }
 
-interface RoactRoduxWrapper<S, P> {
-	(component: StatefulComponent<S, P>): RoduxConnection<S, P>;
-	(component: FunctionalComponent<P>): RoduxConnection<{}, P>;
+interface RoactRoduxWrapper<P, S> {
+	(component: StatefulComponent<P>): RoduxConnection<P>;
+	(component: FunctionalComponent<P>): RoduxConnection<P>;
 }
 
-interface RoduxConnection<S, P> {
+interface RoduxConnection<P> {
 	new (props: P): {};
 }
 
@@ -84,15 +84,15 @@ const connect = RoactRodux.connect<IMyStoreState, IMyComponentProps>(
 	function connect<S, P>(
 		mapStateToProps: () => MapStateToProps<S, P, keyof S>,
 		mapDispatchToProps?: MapDispatcherToProps<P>,
-	): RoactRoduxWrapper<S, P>;
+	): RoactRoduxWrapper<P, S>;
 
 	function connect<P>(
 		mapStateToProps: undefined,
 		dispatcher?: MapDispatcherToProps<P>,
-	): RoactRoduxWrapper<{}, P>;
+	): RoactRoduxWrapper<P, {}>;
 
 	function connect<S, P>(
 		mapStateToProps: MapStateToProps<S, P, keyof S>,
 		mapDispatchToProps?: MapDispatcherToProps<P>,
-	): RoactRoduxWrapper<S, P>;
+	): RoactRoduxWrapper<P, S>;
 }
