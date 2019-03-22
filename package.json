@@ -1,8 +1,9 @@
 {
 	"name": "rbx-roact-rodux",
-	"version": "0.0.10",
+	"version": "0.0.11",
 	"description": "",
 	"scripts": {
+		"prepublish": "npm run build",
 		"build": "node util/build/index.js"
 	},
 	"keywords": [],
