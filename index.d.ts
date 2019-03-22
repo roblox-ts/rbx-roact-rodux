@@ -26,7 +26,9 @@ interface RoactRoduxWrapper<P, S> {
 }
 
 interface RoduxConnection<P> {
-	new (props: P): {};
+	new (props: P): {
+		render(): Roact.Element | undefined;
+	};
 }
 
 type MapStateToProps<S, P, K extends keyof S> = (
