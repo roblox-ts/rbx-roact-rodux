@@ -17,7 +17,7 @@ type MapDispatcherToProps<P> = (
 interface StatefulComponent<P> extends Roact.RenderablePropsClass<P> {}
 
 interface FunctionalComponent<P> {
-	(props: P): Roact.Element;
+	(props: P): Roact.Element | undefined;
 }
 
 interface RoactRoduxWrapper<P, S> {
