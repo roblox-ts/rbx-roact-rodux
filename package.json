@@ -1,5 +1,5 @@
 {
-	"name": "rbx-roact-rodux",
+	"name": "@rbxts/roact-rodux",
 	"version": "0.0.12",
 	"description": "",
 	"scripts": {
