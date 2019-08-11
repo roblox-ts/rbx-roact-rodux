@@ -47,6 +47,7 @@ declare namespace RoactRodux {
 	 * You can then make use of these stores through `RoactRodux.connect`
 	 */
 	class StoreProvider extends Roact.Component<StoreProviderProps> {
+		constructor(props: StoreProviderProps);
 		public render(): Roact.Element;
 	}
 
