@@ -1,6 +1,6 @@
 {
 	"name": "@rbxts/roact-rodux",
-	"version": "0.0.13",
+	"version": "0.1.0",
 	"description": "",
 	"scripts": {
 		"prepublish": "npm run build",
@@ -15,9 +15,10 @@
 		"out/*",
 		"*.d.ts"
 	],
-	"devDependencies": {
-		"rbx-roact": "0.0.22",
-		"rbx-rodux": "0.0.3",
-		"rbx-types": "^1.0.87"
+	"devDependencies": {},
+	"dependencies": {
+		"@rbxts/roact": "^1.1.1",
+		"@rbxts/rodux": "0.0.12",
+		"@rbxts/types": "^1.0.244"
 	}
 }
