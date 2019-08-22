@@ -1,4 +1,4 @@
-<div align="center"><img src="https://assets.vorlias.com/i1/roact-tsx.png?v=3"/></div>
+<div align="center"><img src="https://assets.vorlias.com/i1/roact-rodux-ts.png?v=3"/></div>
 <h1 align="center">RoactRodux-TS</h1>
 <div align="center">
 	<a href="https://roblox.github.io/roact-rodux">
