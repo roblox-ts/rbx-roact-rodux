@@ -58,7 +58,7 @@ type RoactRoduxEnhancerWithProps<TInjectedProps, TNeedsProps> = <
 	component: C,
 ) => ConnectedComponentClass<
 	C,
-	Omit<GetProps<C>, keyof Shared<TInjectedProps, GetProps<C>>> & TNeedsProps
+	Omit<GetProps<C>, keyof Shared<TInjectedProps, GetProps<C>>> // & TNeedsProps
 >;
 
 type RoactRoduxEnhancer<TInjectedProps> = RoactRoduxEnhancerWithProps<
