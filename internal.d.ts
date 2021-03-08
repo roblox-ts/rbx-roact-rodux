@@ -1,4 +1,5 @@
 import { Dispatch, Action, AnyAction } from "@rbxts/rodux";
+import Roact from "@rbxts/roact";
 /// <reference path="index.d.ts" />
 
 interface StatefulComponent<P> extends Roact.RenderablePropsClass<P> {}
