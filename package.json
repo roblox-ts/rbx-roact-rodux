@@ -3,8 +3,6 @@
 	"version": "0.2.2-ts.0",
 	"description": "",
 	"scripts": {
-		"prepublish": "npm run build",
-		"build": "node util/build/index.js"
 	},
 	"keywords": [],
 	"typings": "src/index.d.ts",
@@ -12,7 +10,7 @@
 	"author": "",
 	"license": "ISC",
 	"files": [
-		"out/*",
+		"src/*",
 		"*.d.ts"
 	],
 	"devDependencies": {
