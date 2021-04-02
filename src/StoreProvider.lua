@@ -1,4 +1,5 @@
-local Roact = require(script.Parent.Parent.roact.src)
+local nodeModules = script.Parent.Parent.Parent
+local Roact = require(nodeModules.roact.src)
 
 local storeKey = require(script.Parent.storeKey)
 
