@@ -1,9 +1,8 @@
 {
 	"name": "@rbxts/roact-rodux",
-	"version": "0.2.2-ts.2",
+	"version": "0.2.2-ts.3",
 	"description": "",
-	"scripts": {
-	},
+	"scripts": {},
 	"keywords": [],
 	"typings": "src/index.d.ts",
 	"main": "src/init.lua",
@@ -14,7 +13,7 @@
 		"*.d.ts"
 	],
 	"devDependencies": {
-		"@rbxts/compiler-types": "^1.0.0-types.0",
+		"@rbxts/compiler-types": "^1.1.1-types.3",
 		"@rbxts/roact": "^1.3.0-ts.12",
 		"@rbxts/rodux": "^1.1.0-ts.1",
 		"@rbxts/types": "^1.0.464"
