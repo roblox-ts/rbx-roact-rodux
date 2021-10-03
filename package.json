@@ -1,9 +1,17 @@
 {
 	"name": "@rbxts/roact-rodux",
 	"version": "0.2.2-ts.4",
-	"description": "",
+	"description": "roact-rodux for Roblox TypeScript",
 	"scripts": {},
-	"keywords": [],
+	"keywords": [
+		"roblox",
+		"typescript",
+		"rodux",
+		"roact",
+		"roact-rodux"
+	],
+	"homepage": "https://roblox.github.io/roact-rodux/",
+	"bugs": "https://github.com/roblox-ts/rbx-roact-rodux/issues",
 	"typings": "src/index.d.ts",
 	"main": "src/init.lua",
 	"author": "",
@@ -12,6 +20,10 @@
 		"src/*",
 		"*.d.ts"
 	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/roblox-ts/rbx-roact-rodux"
+	},
 	"devDependencies": {
 		"@rbxts/compiler-types": "1.1.1-types.5",
 		"@rbxts/roact": "1.4.0-ts.0",
