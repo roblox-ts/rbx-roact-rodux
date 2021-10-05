@@ -1,8 +1,8 @@
 local nodeModules = script.Parent.Parent.Parent
 local Roact = require(nodeModules.roact.src)
-local getStore = require(script.Parent.getStore)
 local shallowEqual = require(script.Parent.shallowEqual)
 local join = require(script.Parent.join)
+local StoreContext = require(script.Parent.StoreContext)
 
 --[[
 	Formats a multi-line message with printf-style placeholders.
@@ -57,8 +57,12 @@ local function connect(mapStateToPropsOrThunk, mapDispatchToProps)
 		mapStateToPropsOrThunk = noop
 	end
 
+	local mapDispatchType = typeof(mapDispatchToProps)
 	if mapDispatchToProps ~= nil then
-		assert(typeof(mapDispatchToProps) == "function", "mapDispatchToProps must be a function or nil!")
+		assert(
+			mapDispatchType == "function" or mapDispatchType == "table",
+			"mapDispatchToProps must be a function, table, or nil!"
+		)
 	else
 		mapDispatchToProps = noop
 	end
@@ -82,14 +86,14 @@ local function connect(mapStateToPropsOrThunk, mapDispatchToProps)
 
 		function Connection.getDerivedStateFromProps(nextProps, prevState)
 			if prevState.stateUpdater ~= nil then
-				return prevState.stateUpdater(nextProps, prevState)
+				return prevState.stateUpdater(nextProps.innerProps, prevState)
 			end
 		end
 
 		function Connection:createStoreConnection()
 			self.storeChangedConnection = self.store.changed:connect(function(storeState)
 				self:setState(function(prevState, props)
-					local mappedStoreState = prevState.mapStateToProps(storeState, props)
+					local mappedStoreState = prevState.mapStateToProps(storeState, props.innerProps)
 
 					-- We run this check here so that we only check shallow
 					-- equality with the result of mapStateToProps, and not the
@@ -103,8 +107,8 @@ local function connect(mapStateToPropsOrThunk, mapDispatchToProps)
 			end)
 		end
 
-		function Connection:init()
-			self.store = getStore(self)
+		function Connection:init(props)
+			self.store = props.store
 
 			if self.store == nil then
 				local message = formatMessage({
@@ -121,7 +125,7 @@ local function connect(mapStateToPropsOrThunk, mapDispatchToProps)
 			local storeState = self.store:getState()
 
 			local mapStateToProps = mapStateToPropsOrThunk
-			local mappedStoreState = mapStateToProps(storeState, self.props)
+			local mappedStoreState = mapStateToProps(storeState, self.props.innerProps)
 
 			-- mapStateToPropsOrThunk can return a function instead of a state
 			-- value. In this variant, we keep that value as mapStateToProps
@@ -129,7 +133,7 @@ local function connect(mapStateToPropsOrThunk, mapDispatchToProps)
 			-- and enables connectors to keep instance-level state.
 			if typeof(mappedStoreState) == "function" then
 				mapStateToProps = mappedStoreState
-				mappedStoreState = mapStateToProps(storeState, self.props)
+				mappedStoreState = mapStateToProps(storeState, self.props.innerProps)
 			end
 
 			if mappedStoreState ~= nil and typeof(mappedStoreState) ~= "table" then
@@ -144,9 +148,24 @@ local function connect(mapStateToPropsOrThunk, mapDispatchToProps)
 				error(message)
 			end
 
-			local mappedStoreDispatch = mapDispatchToProps(function(...)
+			local function dispatch(...)
 				return self.store:dispatch(...)
-			end)
+			end
+
+			local mappedStoreDispatch
+			if mapDispatchType == "table" then
+				mappedStoreDispatch = {}
+
+				for key, actionCreator in pairs(mapDispatchToProps) do
+					assert(typeof(actionCreator) == "function", "mapDispatchToProps must contain function values")
+
+					mappedStoreDispatch[key] = function(...)
+						dispatch(actionCreator(...))
+					end
+				end
+			elseif mapDispatchType == "function" then
+				mappedStoreDispatch = mapDispatchToProps(dispatch)
+			end
 
 			local stateUpdater = makeStateUpdater(self.store)
 
@@ -168,7 +187,7 @@ local function connect(mapStateToPropsOrThunk, mapDispatchToProps)
 				propsForChild = nil,
 			}
 
-			local extraState = stateUpdater(self.props, self.state, mappedStoreState)
+			local extraState = stateUpdater(self.props.innerProps, self.state, mappedStoreState)
 
 			for key, value in pairs(extraState) do
 				self.state[key] = value
@@ -185,7 +204,20 @@ local function connect(mapStateToPropsOrThunk, mapDispatchToProps)
 			return Roact.createElement(innerComponent, self.state.propsForChild)
 		end
 
-		return Connection
+		local ConnectedComponent = Roact.Component:extend(componentName)
+
+		function ConnectedComponent:render()
+			return Roact.createElement(StoreContext.Consumer, {
+				render = function(store)
+					return Roact.createElement(Connection, {
+						innerProps = self.props,
+						store = store,
+					})
+				end,
+			})
+		end
+
+		return ConnectedComponent
 	end
 end
 
