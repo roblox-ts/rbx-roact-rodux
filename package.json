@@ -1,6 +1,6 @@
 {
 	"name": "@rbxts/roact-rodux",
-	"version": "0.2.2-ts.5",
+	"version": "0.2.2-ts.6",
 	"description": "roact-rodux for Roblox TypeScript",
 	"scripts": {},
 	"keywords": [
@@ -31,7 +31,7 @@
 		"@rbxts/types": "^1.0.503"
 	},
 	"peerDependencies": {
-		"@rbxts/roact": "1.4.0-ts.0",
+		"@rbxts/roact": "1.4.2-ts.0",
 		"@rbxts/rodux": "3.0.0-ts.3",
 		"@rbxts/types": "^1.0.503"
 	}
