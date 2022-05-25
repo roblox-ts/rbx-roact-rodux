@@ -1,5 +1,5 @@
 <div align="center"><img src="https://australis.dev/roact-rodux-ts.png"/></div>
-<h1 align="center">RoactRodux-TS</h1>
+<h1 align="center">@rbxts/roact-rodux</h1>
 <div align="center">
 	<a href="https://roblox.github.io/roact-rodux">
 		<img src="https://img.shields.io/badge/docs-lua-purple.svg" alt="Documentation"></img>
