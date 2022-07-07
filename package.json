@@ -25,14 +25,14 @@
 		"url": "https://github.com/roblox-ts/rbx-roact-rodux"
 	},
 	"devDependencies": {
-		"@rbxts/compiler-types": "1.1.1-types.5",
-		"@rbxts/roact": "1.4.0-ts.0",
-		"@rbxts/rodux": "3.0.0-ts.3",
-		"@rbxts/types": "^1.0.503"
+		"@rbxts/compiler-types": "^1.3.3-types.1",
+		"@rbxts/roact": "^1.4.2-ts.2",
+		"@rbxts/rodux": "^3.0.0-ts.3",
+		"@rbxts/types": "^1.0.627"
 	},
 	"peerDependencies": {
-		"@rbxts/roact": "1.4.0-ts.0",
-		"@rbxts/rodux": "3.0.0-ts.3",
-		"@rbxts/types": "^1.0.503"
+		"@rbxts/roact": "^1.4.2-ts.2",
+		"@rbxts/rodux": "^3.0.0-ts.3",
+		"@rbxts/types": "^1.0.627"
 	}
 }
